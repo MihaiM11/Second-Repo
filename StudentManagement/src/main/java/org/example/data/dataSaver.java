@@ -42,7 +42,7 @@ public class dataSaver {
                 int studentId=student.getIdStudent();
                 continut=continut.concat(cursId+ "," + studentId + "\n");
             }
-
+ 
         }
 
         dataSaverUtils.writeFile(dataSaverUtils.SAVE_MAPING_FILE_PATH,continut);

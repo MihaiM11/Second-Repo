@@ -17,6 +17,8 @@ public class Main {
         dataLoader dl=new dataLoader();
         dl.loadData();
 
+        Map dataMap= new HashMap(dl.getMapCursuriSiStudenti());
+
        // System.out.println(dl.getMapCursuriSiStudenti());
 
 
@@ -45,7 +47,7 @@ public class Main {
 
                 case 1:
                     System.out.println("Cursurile care de desfasoara in acest moment sunt :");
-                    dataLoader.afisareCursuri(dl.getMapCursuriSiStudenti());
+                    dataLoader.afisareCursuri(dataMap);
                     break;
 
                 case 2:
@@ -69,30 +71,33 @@ public class Main {
                     System.out.println("S-a introdus urmatorul curs:");
                     System.out.println(cursNou);
 
-                    dataLoader.adauagaCurs(cursNou,dl.getMapCursuriSiStudenti());
-                    dataLoader.afisareCursuri(dl.getMapCursuriSiStudenti());
+                    dataLoader.adauagaCurs(cursNou,dataMap);
+                    dataLoader.afisareCursuri(dataMap);
 
 
 
                     break;
 
                 case 3:
-                    System.out.println("Introduceti un student");
-                    System.out.println("Va rugam introduceti numele cursului din lista de mai jos:");
+
+                    System.out.println("Cursurile disponibile in momentul de fata sunt: !!") ;
+
                     int cursDisponibil=0;
                     for(Map.Entry<Curs,List<Student>> inregistrate : dl.getMapCursuriSiStudenti().entrySet()){
 
                         if(inregistrate.getValue().size()<9){
                             cursDisponibil++;
-                            System.out.println("Curs disponibil" + inregistrate.getKey());
+                            System.out.println("Curs disponibil" + inregistrate.getKey() );
                         }
 
                     }
+                    System.out.println("\n");
 
                     if(cursDisponibil==0){
                         System.out.println("Nu exista vreun curs disponibil");
                     }
 
+                    System.out.println("Introduceti numele cursului la care doriti sa se efectueze inrolarea: ");
                     String numeCurs=scanner.nextLine();
                     LocalDate now=LocalDate.now();
 
@@ -135,7 +140,7 @@ public class Main {
 
 
                     dl.getMapCursuriSiStudenti().get(cursGasit).add(studentNou);
-                    System.out.println(dl.getMapCursuriSiStudenti());
+                    System.out.println(dataMap);
 
 
                     break;
